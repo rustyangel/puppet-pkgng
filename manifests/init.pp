@@ -23,8 +23,14 @@ class pkgng (
   }
 
   # make sure repo config dir is present
-  file { ['/usr/local/etc/pkg', '/usr/local/etc/pkg/repos']:
+  file { '/usr/local/etc/pkg':
     ensure => directory,
+  }
+
+  file { '/usr/local/etc/pkg/repos':
+    ensure  => directory,
+    recurse => true,
+    purge   => true,
   }
 
   file { '/etc/make.conf':
